@@ -26,7 +26,9 @@ const decorateInner = (tagInfo: TagInfo, editor: vscode.TextEditor, src: string)
     if (tagInfo.decChar !== undefined) {
         tagInfo.decChar.decorator.dispose();
     }
-    const regex = new RegExp(`${commentSetting.startRegExp || commentSetting.start}|${commentSetting.endRegExp || commentSetting.end}|<(?:/|)${tagInfo.tagName}(?:$|(?:| (?:.*?)[^-?%$])(?<!=)>)`, 'gm');
+    // const regex = new RegExp(`${commentSetting.startRegExp || commentSetting.start}|${commentSetting.endRegExp || commentSetting.end}|<(?:/|)${tagInfo.tagName}(?:$|(?:| (?:.*?)[^-?%$])(?<!=)>)`, 'gm');
+    const regex = new RegExp(`${commentSetting.startRegExp || commentSetting.start}|${commentSetting.endRegExp || commentSetting.end}|<(?:/|)${tagInfo.tagName}(?:$|>)`, 'gm');
+
     let match: RegExpExecArray | null;
     let inComment = false;
     tagInfo.decChar = {
